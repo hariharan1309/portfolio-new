@@ -51,20 +51,8 @@ export function AtmosphereHUD() {
       <div className="pointer-events-none fixed inset-0 z-40 mix-blend-difference opacity-70 hidden md:block">
         {/* Top Left */}
         <div className="absolute top-6 left-6 text-muted-foreground font-mono text-[10px] uppercase tracking-widest leading-relaxed">
-          SYS.OS.v26 // <br/>
+          SYS.OS // <br/>
           HARIHARAN_A
-        </div>
-
-        {/* Top Right */}
-        <div className="absolute top-6 right-6 text-muted-foreground font-mono text-[10px] uppercase tracking-widest text-right leading-relaxed">
-          LOCAL_TIME // <br/>
-          {time || "00:00:00 / 00/00/0000"}
-        </div>
-
-        {/* Bottom Left */}
-        <div className="absolute bottom-6 left-6 text-muted-foreground font-mono text-[10px] uppercase tracking-widest leading-relaxed">
-          ENG. <span className="text-muted-foreground/60">NEXT.JS/MOTION</span><br/>
-          LOC. <span className="text-muted-foreground/60">COIMBATORE</span>
         </div>
 
         {/* Bottom Right */}

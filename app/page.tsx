@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import Hero from "@/components/sections/Hero";
 import Competencies from "@/components/sections/Competencies";
@@ -9,7 +9,6 @@ import Projects from "@/components/sections/Projects";
 import Contact from "@/components/sections/Contact";
 
 export default function Home() {
-  const [activeProject, setActiveProject] = useState(0);
   const experienceRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll();
@@ -37,7 +36,7 @@ export default function Home() {
       <Hero handleDownload={handleDownload} y1={y1} y2={y2} opacity={opacity} />
       <Competencies />
       <Experience experienceRef={experienceRef} beamHeight={beamHeight} />
-      <Projects activeProject={activeProject} setActiveProject={setActiveProject} />
+      <Projects />
       <Contact y2={y2} />
     </main>
   );

@@ -1,20 +1,36 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Portfolio - Hariharan A
 
-# Run and deploy your AI Studio app
+A modern, interactive, and highly animated personal portfolio website built to showcase projects, experience, and technical competencies. Designed with a sleek approach alongside dynamic theme switching (Dark, Purple, Cyan).
 
-This contains everything you need to run your app locally.
+## 🚀 Key Features
 
-View your app in AI Studio: https://ai.studio/apps/91461fcd-44a3-4bb8-be50-08f2d9523fcf
+*   **Immersive Animations:** Utilizing [Motion](https://motion.dev/) for scroll-linked animations, parallax effects, and smooth page transitions.
+*   **Scroll-Stack Projects:** A custom-built, sticky card stack animation for the projects showcase area, providing an engaging way to scroll through the portfolio.
+*   **Dynamic Theming:** Seamless switching between customized dark-mode themes (Monochrome, Purple, and Cyan).
+*   **Responsive Design:** Fully fluid UI optimized for mobile, tablet, and desktop viewports using Tailwind CSS.
+*   **Atmosphere HUD:** An ambient, fixed-position Heads-Up Display showing localized context and scroll metrics.
 
-## Run Locally
+## 🛠 Tech Stack
 
-**Prerequisites:**  Node.js
+*   **Framework:** [Next.js](https://nextjs.org/) (App Router)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+*   **Animations:** [Motion](https://motion.dev/)
+*   **Icons:** [Lucide React](https://lucide.dev/)
+*   **Components:** Custom UI components with headless primitives and conditional class merging (`clsx`, `tailwind-merge`).
 
+## 📁 Project Structure
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```text
+.
+├── app/                  # Next.js App Router (Pages, Layout, Globals)
+├── components/
+│   ├── sections/         # Main page sections (Hero, Competencies, Experience, Projects, Contact)
+│   ├── ui/               # Reusable UI components (Buttons, ThemeToggle, AtmosphereHUD, etc)
+│   └── reactbits/        # Specialized animation components (e.g., DecryptedText)
+├── hooks/                # Custom React hooks
+├── lib/                  # Utility functions and static data
+│   ├── portfolioData.ts  # Centralized data store for projects, experience, and skills
+│   └── utils.ts          # Helper functions (Tailwind cn merge, etc.)
+├── public/               # Static assets (Images, Resume)
+```

@@ -1,4 +1,4 @@
-# Portfolio - Hariharan A
+# Portfolio - [Hariharan A](https://hari-haran-portfolio-fe.vercel.app/)
 
 A modern, interactive, and highly animated personal portfolio website built to showcase projects, experience, and technical competencies. Designed with a sleek approach alongside dynamic theme switching (Dark, Purple, Cyan).
 

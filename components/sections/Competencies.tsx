@@ -68,7 +68,7 @@ export default function Competencies() {
           ))}
           
           {/* Extra Block */}
-          <ScrollAnimation direction="up" delay={0.3} className="md:col-span-2 group bg-background transition-colors duration-500 relative overflow-hidden">
+          <ScrollAnimation direction="up" delay={0.3} className="md:col-span-full group bg-background transition-colors duration-500 relative overflow-hidden">
              <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle,_var(--foreground)_1px,_transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>
              <div className="h-full p-8 md:p-12 flex items-center justify-center min-h-[300px] relative z-10">
                <div className="w-full">

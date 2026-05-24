@@ -1,12 +1,42 @@
+// export const skills = [
+//   {
+//     category: "Frontend",
+//     items: ["Next.js", "React.js", "React Native", "Expo", "TypeScript", "JavaScript (ES6+)", "Context API", "TailwindCSS", "Shadcn UI", "Framer Motion"]
+//   },
+//   {
+//     category: "Backend & Tools",
+//     items: ["Node.js", "Express.js", "RESTful APIs", "MongoDB", "JWT", "Git"]
+//   }
+// ];
 export const skills = [
   {
     category: "Frontend",
-    items: ["Next.js", "React.js", "React Native", "Expo", "TypeScript", "JavaScript (ES6+)", "Context API", "TailwindCSS", "Shadcn UI", "Framer Motion"]
+    items: [
+      "Next.js",
+      "React.js",
+      "TypeScript",
+      "JavaScript (ES6+)",
+      "Context API",
+    ],
+  },
+  {
+    category: "Mobile & AI Integration",
+    items: [
+      "React Native",
+      "Expo",
+      "TensorFlow Lite",
+      "JSI Worklets",
+      "rn-vision-camera",
+    ],
+  },
+  {
+    category: "UI & Styling",
+    items: ["TailwindCSS", "Shadcn UI", "Framer Motion", "Reanimated"],
   },
   {
     category: "Backend & Tools",
-    items: ["Node.js", "Express.js", "RESTful APIs", "MongoDB", "JWT", "Git"]
-  }
+    items: ["Node.js", "Express.js", "RESTful APIs", "MongoDB", "JWT", "Git"],
+  },
 ];
 
 export const experiences = [
@@ -16,9 +46,10 @@ export const experiences = [
     period: "05/2025 - Present",
     responsibilities: [
       "Built frontend for an AI agent management platform using Next.js, TypeScript, and Shadcn UI",
+      "Developing a high-performance on-device React Native face recognition app using TensorFlow Lite and Vision Camera worklets for real-time AI inference.",
       "Implemented role-based authorization with admin workflow management and share hierarchy controls",
       "Developed landing page and price analyzer dashboard using Next.js, TailwindCSS, and Framer Motion",
-      "Mentored Freshers on developing invoice management, HRMS, and project management tools."
+      "Mentored a team of 3 junior developers on developing invoice management, HRMS, and project management tools.",
     ],
   },
   {
@@ -28,7 +59,7 @@ export const experiences = [
     responsibilities: [
       "Developed SaaS platform serving gym organizations with subscription-based authorization for multi-level user access.",
       "Implemented PWA, Web-socket notifications and Razor-pay payment integration.",
-      "Optimized performance through best practices like lazy loading and code-splitting."
+      "Optimized performance through best practices like lazy loading and code-splitting.",
     ],
   },
   {
@@ -37,7 +68,7 @@ export const experiences = [
     period: "06/2024 - 09/2024",
     responsibilities: [
       "Developed dashboard, user and plan pages for gym member management using Next.js, TypeScript, and Tailwind-CSS",
-      "Implemented Authentication with JWT and Google OAuth authentication using Context to Authorize users across the pages"
+      "Implemented Authentication with JWT and Google OAuth authentication using Context to Authorize users across the pages",
     ],
   },
   {
@@ -46,7 +77,7 @@ export const experiences = [
     period: "03/2024 - 06/2024",
     responsibilities: [
       "Built real-time web applications and landing pages using Next.js, TypeScript, and Tailwind-CSS.",
-      "Gained production experience with Next.js App Router and server-side rendering."
+      "Gained production experience with Next.js App Router and server-side rendering.",
     ],
   },
   {
@@ -54,7 +85,7 @@ export const experiences = [
     company: "Self-Employed | India",
     period: "10/2023 - 01/2024",
     responsibilities: [
-      "Delivered web applications using MERN stack and React.js with TailwindCSS for clients."
+      "Delivered web applications using MERN stack and React.js with TailwindCSS for clients.",
     ],
   },
   {
@@ -62,12 +93,28 @@ export const experiences = [
     company: "Virtusa | India",
     period: "05/2023 - 08/2023",
     responsibilities: [
-      "Trained in React.js and Spring Boot development following agile workflows and Git version control."
+      "Trained in React.js and Spring Boot development following agile workflows and Git version control.",
     ],
-  }
+  },
 ];
 
 export const projects = [
+  {
+    title: "On-Device Biometric Authentication System",
+    type: "Work Project (AGF Tecnik)",
+    description:
+      "A high-performance React Native mobile application featuring real-time face detection and local ML inference using TensorFlow Lite and JSI worklets to generate 512-dimensional vector embeddings.",
+    image: "/placeholder.svg?height=400&width=600", // Update with a relevant screenshot or AI graphic if you have one
+    technologies: [
+      "React Native",
+      "Expo",
+      "TensorFlow Lite",
+      "TypeScript",
+      "Vision Camera",
+    ],
+    link: "", // Leave blank if internal
+    github: "", // Leave blank if private repo
+  },
   {
     title: "Gym Force Web Application",
     type: "Work Project",

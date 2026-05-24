@@ -10,25 +10,45 @@ import Magnetic from "@/components/ui/Magnetic";
 import BlurText from "@/components/reactbits/BlurText";
 import DecryptedText from "@/components/reactbits/DecryptedText";
 
-export default function Hero({ handleDownload, y1, y2, opacity }: { handleDownload: () => void, y1: any, y2: any, opacity: any }) {
+export default function Hero({
+  handleDownload,
+  y1,
+  y2,
+  opacity,
+}: {
+  handleDownload: () => void;
+  y1: any;
+  y2: any;
+  opacity: any;
+}) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+  function handleMouseMove({
+    currentTarget,
+    clientX,
+    clientY,
+  }: React.MouseEvent) {
     const { left, top } = currentTarget.getBoundingClientRect();
     mouseX.set(clientX - left);
     mouseY.set(clientY - top);
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-24 px-6 md:px-12 lg:px-24
-    " id="hero">
+    <section
+      className="relative min-h-screen flex items-center justify-center overflow-hidden py-24 px-6 md:px-12 lg:px-24
+    "
+      id="hero"
+    >
       <motion.div
         className="absolute inset-0 z-0 opacity-20"
         style={{ y: y1, opacity }}
       >
         <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/20 rounded-full mix-blend-screen filter blur-[120px] opacity-[0.15] animate-pulse"></div>
-        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary/20 rounded-full mix-blend-screen filter blur-[120px] opacity-[0.15]" style={{ animationDelay: "2s" }}></div>
+        <div
+          className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary/20 rounded-full mix-blend-screen filter blur-[120px] opacity-[0.15]"
+          style={{ animationDelay: "2s" }}
+        ></div>
       </motion.div>
 
       <div className="container mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
@@ -46,16 +66,20 @@ export default function Hero({ handleDownload, y1, y2, opacity }: { handleDownlo
               className="flex items-center gap-4 mb-6"
             >
               <div className="w-12 h-[1px] bg-muted-foreground"></div>
-              <DecryptedText 
-                text="Frontend Engineer" 
-                delay={1.2} 
+              <DecryptedText
+                text="Frontend Engineer"
+                delay={1.2}
                 speed={50}
                 className="text-muted-foreground font-mono text-sm tracking-widest uppercase"
               />
             </motion.div>
             <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[9rem] font-bold tracking-tighter leading-[0.9] text-foreground flex flex-col">
               <BlurText text="Hariharan" delay={0.3} />
-              <BlurText text="A." delay={0.6} className="text-muted-foreground" />
+              <BlurText
+                text="A."
+                delay={0.6}
+                className="text-muted-foreground"
+              />
             </h1>
           </div>
 
@@ -65,7 +89,8 @@ export default function Hero({ handleDownload, y1, y2, opacity }: { handleDownlo
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-lg md:text-xl text-muted-foreground font-light tracking-wide max-w-xl leading-relaxed"
           >
-            Crafting intuitive, pixel-perfect digital experiences with Next.js, React, and TypeScript.
+            Crafting fast, pixel-perfect web and native applications with
+            Next.js, React Native.
           </motion.p>
 
           <motion.div
@@ -82,7 +107,12 @@ export default function Hero({ handleDownload, y1, y2, opacity }: { handleDownlo
                 <motion.div
                   className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent z-0"
                   animate={{ translateX: ["-100%", "200%"] }}
-                  transition={{ repeat: Infinity, duration: 2.5, ease: "linear", repeatDelay: 1 }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 2.5,
+                    ease: "linear",
+                    repeatDelay: 1,
+                  }}
                 />
                 <span className="relative z-10 flex items-center">
                   <Download className="w-4 h-4 mr-2 group-hover:-translate-y-1 group-hover:opacity-0 transition-all duration-300" />
@@ -129,18 +159,23 @@ export default function Hero({ handleDownload, y1, y2, opacity }: { handleDownlo
         <div style={{ perspective: "1000px" }} className="hidden md:block">
           <motion.div
             // 1. Elevated & tilted (like holding a frame before dropping it on a desk)
-            initial={{ opacity: 0, y: -80, x: 15, rotateZ: 3, rotateX: 25, scale: 0.9 }}
-
+            initial={{
+              opacity: 0,
+              y: -80,
+              x: 15,
+              rotateZ: 3,
+              rotateX: 25,
+              scale: 0.9,
+            }}
             // 2. Drop heavily into place, settling on an artistic negative tilt
             animate={{
               opacity: 1,
               y: 0,
               x: 0,
-              rotateZ: -3, 
+              rotateZ: -3,
               rotateX: 0,
               scale: 1,
             }}
-
             // 3. Interactive hover: perfectly straightens out and lifts slightly towards user
             // whileHover={{
             //   rotateZ: 0,
@@ -154,13 +189,13 @@ export default function Hero({ handleDownload, y1, y2, opacity }: { handleDownlo
             transition={{
               type: "spring",
               stiffness: 160, // Speed of the drop
-              damping: 12,    // Friction (lower = more wobble/bounce)
-              mass: 1.2,      // Weight of the frame
-              delay: 0.3
+              damping: 12, // Friction (lower = more wobble/bounce)
+              mass: 1.2, // Weight of the frame
+              delay: 0.3,
             }}
             style={{
               transformStyle: "preserve-3d",
-              transformOrigin: "center center"
+              transformOrigin: "center center",
             }}
             className="relative w-[420px] h-[420px] group cursor-pointer"
           >

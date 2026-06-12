@@ -16,7 +16,7 @@ export default function DecryptedText({
   text, 
   speed = 40, 
   className = "",
-  as: Component = "span",
+  as: Component = "span" as any,
   delay = 0
 }: DecryptedTextProps) {
   const [displayText, setDisplayText] = useState("");
@@ -59,9 +59,9 @@ export default function DecryptedText({
   }, [isInView, text, speed, delay]);
 
   return (
-    <Component ref={ref} className={`${className} font-mono relative inline-block`}>
+    <span ref={ref as React.RefObject<HTMLSpanElement>} className={`${className} font-mono relative inline-block`}>
       <span className="opacity-0">{text}</span>
       <span className="absolute left-0 top-0 text-inherit">{displayText}</span>
-    </Component>
+    </span>
   );
 }

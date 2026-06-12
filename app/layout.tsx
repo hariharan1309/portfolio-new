@@ -8,6 +8,8 @@ import SmoothScroll from "@/components/ui/SmoothScroll";
 import Preloader from "@/components/ui/Preloader";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { ModeProvider } from "@/components/ModeProvider";
+import { CapsuleToggle } from "@/components/ui/CapsuleToggle";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -29,13 +31,16 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           disableTransitionOnChange
           themes={['dark', 'purple', 'cyan']}
         >
-          <Preloader />
-          <AtmosphereHUD />
-          <CustomCursor />
-          <ThemeToggle />
-          <SmoothScroll>
-            {children}
-          </SmoothScroll>
+          <ModeProvider>
+            <Preloader />
+            <AtmosphereHUD />
+            <CustomCursor />
+            <ThemeToggle />
+            <CapsuleToggle />
+            <SmoothScroll>
+              {children}
+            </SmoothScroll>
+          </ModeProvider>
         </ThemeProvider>
       </body>
     </html>

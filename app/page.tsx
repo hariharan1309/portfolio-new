@@ -1,14 +1,17 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import Hero from "@/components/sections/Hero";
 import Competencies from "@/components/sections/Competencies";
 import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
 import Contact from "@/components/sections/Contact";
+import { useMode } from "@/components/ModeProvider";
+import { Scene3D } from "@/components/3d/Scene3D";
 
 export default function Home() {
+  const { is3DMode } = useMode();
   const experienceRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll();
@@ -32,12 +35,26 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-zinc-50 selection:bg-zinc-800 selection:text-zinc-50 overflow-clip">
-      <Hero handleDownload={handleDownload} y1={y1} y2={y2} opacity={opacity} />
-      <Competencies />
-      <Experience experienceRef={experienceRef} beamHeight={beamHeight} />
-      <Projects />
-      <Contact y2={y2} />
-    </main>
+    <>
+      <Scene3D />
+      <AnimatePresence>
+        {!is3DMode && (
+          <motion.main
+            key="2d-content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, filter: "blur(10px)", scale: 0.95 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="min-h-screen bg-zinc-950 text-zinc-50 selection:bg-zinc-800 selection:text-zinc-50 overflow-clip"
+          >
+            <Hero handleDownload={handleDownload} y1={y1} y2={y2} opacity={opacity} />
+            <Competencies />
+            <Experience experienceRef={experienceRef} beamHeight={beamHeight} />
+            <Projects />
+            <Contact y2={y2} />
+          </motion.main>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

@@ -29,7 +29,9 @@ export function AtmosphereHUD() {
   }, []);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    setScrollPct((latest * 100).toFixed(0) + "p");
+    const pct = Math.round(latest * 100);
+    const formatted = `${pct}%`;
+    setScrollPct((prev) => (prev === formatted ? prev : formatted));
   });
 
   return (
@@ -47,21 +49,39 @@ export function AtmosphereHUD() {
         ></div>
       </div>
 
-      {/* Viewport HUD tracking (Technical elements) */}
-      <div className="pointer-events-none fixed inset-0 z-40 mix-blend-difference opacity-70 hidden md:block">
-        {/* Top Left */}
-        <div className="absolute top-6 left-6 text-muted-foreground font-mono text-[10px] uppercase tracking-widest leading-relaxed">
-          SYS.OS // <br/>
-          HARIHARAN_A
+      {/* Viewport HUD tracking (Technical manga elements) */}
+      <div className="pointer-events-none fixed inset-0 z-40 opacity-80 hidden md:block select-none" aria-hidden="true">
+        {/* Top Left - Volume No. & Identity (positioned below MangaNav) */}
+        <div className="absolute top-20 left-6 text-muted-foreground font-mono text-[10px] uppercase tracking-widest leading-relaxed">
+          ISSUE.01 // <br/>
+          <span className="text-foreground font-bold">HARIHARAN_A</span>
         </div>
 
-        {/* Bottom Right */}
-        <div className="absolute bottom-6 right-6 text-muted-foreground font-mono text-[10px] uppercase tracking-widest text-right flex flex-col items-end leading-relaxed">
-          <span>SCROLL_Y</span>
-          <span className="text-muted-foreground/60">{scrollPct}</span>
+        {/* Top Right - Live Time & Engine Status */}
+        <div className="absolute top-20 right-6 text-muted-foreground font-mono text-[10px] uppercase tracking-widest text-right leading-relaxed">
+          <span>SYS.RENDER // ACTIVE</span><br/>
+          <span className="text-muted-foreground/60">{time}</span>
+        </div>
+
+        {/* Bottom Left - Volume Reading & Pressure */}
+        <div className="absolute bottom-8 left-6 text-muted-foreground font-mono text-[10px] uppercase tracking-widest leading-relaxed">
+          <span>VOL.01 // STATUS</span><br/>
+          <span className="text-muted-foreground/80">SCROLL: {scrollPct}</span>
+        </div>
+
+        {/* Right Edge - Reiatsu Pressure Gauge */}
+        <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col items-center gap-2">
+          <span className="text-[9px] font-mono tracking-widest text-muted-foreground uppercase -rotate-90 origin-center mb-2">REIATSU</span>
+          <div className="w-[3px] h-28 bg-card border border-border relative overflow-hidden">
+            <div 
+              className="w-full bg-[var(--accent-hero)] absolute bottom-0 transition-all duration-150"
+              style={{ height: scrollPct }}
+            />
+          </div>
+          <span className="text-[10px] font-mono text-muted-foreground mt-2">{scrollPct}</span>
         </div>
         
-        {/* Hardware Crosshairs / Edge Marks */}
+        {/* Hard Manga Corner Framing Crosshairs */}
         <div className="absolute top-0 left-12 w-[1px] h-3 bg-border"></div>
         <div className="absolute top-12 left-0 w-3 h-[1px] bg-border"></div>
         

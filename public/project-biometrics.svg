@@ -1,0 +1,78 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%" fill="none">
+  <rect width="800" height="500" fill="#09090b"/>
+  <defs>
+    <pattern id="dot-grid" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#27272a"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#dot-grid)"/>
+
+  <rect x="20" y="20" width="760" height="460" stroke="#3f3f46" stroke-width="2"/>
+  <rect x="28" y="28" width="744" height="444" stroke="#27272a" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <rect x="20" y="20" width="760" height="36" fill="#18181b" stroke="#3f3f46" stroke-width="2"/>
+  <text x="36" y="44" fill="#ef4444" font-family="monospace" font-size="12" font-weight="bold" letter-spacing="2">ARC.01 // SYSTEM ARCHITECTURE: BIOMETRIC_TFLITE_INFERENCE</text>
+  <text x="660" y="44" fill="#71717a" font-family="monospace" font-size="11" letter-spacing="1">STATUS: ONLINE</text>
+
+  <g transform="translate(180, 80)">
+    <circle cx="220" cy="180" r="140" stroke="#27272a" stroke-width="2"/>
+    <circle cx="220" cy="180" r="110" stroke="#3f3f46" stroke-width="1" stroke-dasharray="6 6"/>
+    <circle cx="220" cy="180" r="70" stroke="#ef4444" stroke-width="1.5" stroke-opacity="0.6"/>
+
+    <path d="M 120 100 L 100 100 L 100 120" stroke="#ef4444" stroke-width="3" fill="none"/>
+    <path d="M 320 100 L 340 100 L 340 120" stroke="#ef4444" stroke-width="3" fill="none"/>
+    <path d="M 100 240 L 100 260 L 120 260" stroke="#ef4444" stroke-width="3" fill="none"/>
+    <path d="M 340 240 L 340 260 L 320 260" stroke="#ef4444" stroke-width="3" fill="none"/>
+
+    <polygon points="220,120 180,160 220,175 260,160" stroke="#a1a1aa" stroke-width="1.5" fill="none"/>
+    <polygon points="180,160 220,175 220,215 170,205" stroke="#71717a" stroke-width="1" fill="none"/>
+    <polygon points="260,160 220,175 220,215 270,205" stroke="#71717a" stroke-width="1" fill="none"/>
+    <polygon points="220,215 195,245 220,255 245,245" stroke="#ef4444" stroke-width="1.5" fill="none"/>
+    <line x1="170" y1="205" x2="195" y2="245" stroke="#52525b" stroke-width="1"/>
+    <line x1="270" y1="205" x2="245" y2="245" stroke="#52525b" stroke-width="1"/>
+
+    <circle cx="180" cy="160" r="3" fill="#ef4444"/>
+    <circle cx="260" cy="160" r="3" fill="#ef4444"/>
+    <circle cx="220" cy="175" r="2.5" fill="#fafafa"/>
+    <circle cx="220" cy="215" r="2.5" fill="#fafafa"/>
+    <circle cx="195" cy="245" r="2.5" fill="#ef4444"/>
+    <circle cx="245" cy="245" r="2.5" fill="#ef4444"/>
+
+    <line x1="80" y1="180" x2="360" y2="180" stroke="#ef4444" stroke-width="2" stroke-opacity="0.8"/>
+    <text x="370" y="184" fill="#ef4444" font-family="monospace" font-size="10">SCAN_AXIS: 0.00ms</text>
+  </g>
+
+  <g transform="translate(45, 80)">
+    <rect width="180" height="240" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+    <rect x="0" y="0" width="180" height="24" fill="#27272a"/>
+    <text x="10" y="16" fill="#fafafa" font-family="monospace" font-size="10" font-weight="bold">PIPELINE METRICS</text>
+    
+    <text x="12" y="50" fill="#a1a1aa" font-family="monospace" font-size="10">ENGINE: TFLITE v2.14</text>
+    <text x="12" y="70" fill="#a1a1aa" font-family="monospace" font-size="10">WORKLETS: JSI THREAD</text>
+    <text x="12" y="90" fill="#a1a1aa" font-family="monospace" font-size="10">FRAME RATE: 60 FPS</text>
+    <text x="12" y="110" fill="#a1a1aa" font-family="monospace" font-size="10">LATENCY: &lt;14.2ms</text>
+    <text x="12" y="130" fill="#ef4444" font-family="monospace" font-size="10">EMBED_DIM: 512-FLOAT</text>
+
+    <g transform="translate(12, 150)">
+      <rect x="0" y="30" width="8" height="30" fill="#ef4444"/>
+      <rect x="12" y="15" width="8" height="45" fill="#71717a"/>
+      <rect x="24" y="22" width="8" height="38" fill="#ef4444"/>
+      <rect x="36" y="5" width="8" height="55" fill="#fafafa"/>
+      <rect x="48" y="28" width="8" height="32" fill="#71717a"/>
+      <rect x="60" y="10" width="8" height="50" fill="#ef4444"/>
+      <rect x="72" y="18" width="8" height="42" fill="#fafafa"/>
+      <rect x="84" y="35" width="8" height="25" fill="#71717a"/>
+      <rect x="96" y="8" width="8" height="52" fill="#ef4444"/>
+      <rect x="108" y="20" width="8" height="40" fill="#fafafa"/>
+      <rect x="120" y="12" width="8" height="48" fill="#ef4444"/>
+      <rect x="132" y="28" width="8" height="32" fill="#71717a"/>
+      <line x1="0" y1="62" x2="150" y2="62" stroke="#3f3f46" stroke-width="1"/>
+    </g>
+  </g>
+
+  <g transform="translate(45, 410)">
+    <rect width="710" height="45" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+    <text x="16" y="28" fill="#71717a" font-family="monospace" font-size="11">RN-VISION-CAMERA // REAL-TIME INFERENCE // HARDWARE ACCELERATED WORKLETS // HIGH-CONCURRENCY PIPELINE</text>
+    <circle cx="680" cy="22" r="5" fill="#ef4444"/>
+  </g>
+</svg>

@@ -7,103 +7,157 @@ import { Github, ExternalLink } from "lucide-react";
 import ScrollAnimation from "@/components/ScrollAnimation";
 import { projects } from "@/lib/portfolioData";
 import DecryptedText from "@/components/reactbits/DecryptedText";
-import { cn } from "@/lib/utils";
 
-const ProjectCard = ({ project, index, total }: { project: any, index: number, total: number }) => {
+const ARC_ACCENTS = [
+  "var(--accent-project-1)", // Arc 1: Crimson (Biometrics)
+  "var(--accent-project-2)", // Arc 2: Azure (Gym Force)
+  "var(--accent-project-3)", // Arc 3: Gold (StayCation)
+  "var(--accent-project-4)", // Arc 4: Violet (Subscription Tracker)
+];
+
+const ProjectCard = ({
+  project,
+  index,
+  total,
+}: {
+  project: any;
+  index: number;
+  total: number;
+}) => {
   const cardRef = useRef<HTMLDivElement>(null);
-  
+  const accentColor = ARC_ACCENTS[index % ARC_ACCENTS.length];
+
   const { scrollYProgress } = useScroll({
     target: cardRef,
-    offset: [`start ${100 + index * 40}px`, `start -100%`] 
+    offset: ["start end", "start start"],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.4]);
-
-  const hasImage = project.title === "StayCation" || (project.image && !project.image.includes("placeholder"));
-  const stickyTop = 100 + index * 40;
+  const scale = useTransform(scrollYProgress, [0.4, 1], [0.96, 1]);
+  const opacity = useTransform(scrollYProgress, [0.2, 0.8], [0.6, 1]);
 
   return (
-    <div 
+    <div
       ref={cardRef}
-      className="sticky w-full z-10" 
-      style={{ top: `${stickyTop}px`, marginBottom: index === total - 1 ? '0' : '40vh' }}
+      className="sticky w-full z-10"
+      style={{
+        top: `calc(5.5rem + ${index * 1.5}rem)`,
+        marginBottom: index === total - 1 ? "0" : "28vh",
+      }}
     >
-      <motion.div 
+      <motion.div
         style={{ scale, opacity }}
-        className="w-full rounded-md bg-secondary/80 backdrop-blur-xl border border-border shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden will-change-transform origin-top"
-        initial={{ opacity: 0, scale: 0.9, y: 50 }}
-        whileInView={{ opacity: 1, scale: 1, y: 0 }}
-        viewport={{ once: true, margin: "-10%" }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="w-full rounded-none bg-card border-2 border-border shadow-2xl overflow-hidden will-change-transform relative group transition-colors duration-300"
       >
-        <div className="w-full flex flex-col md:flex-row min-h-[500px]">
-          {/* Content */}
-          <div className={cn(
-            "flex flex-col justify-center p-4 md:p-6 lg:p-10 relative z-20",
-            hasImage ? "md:w-1/2" : "w-full items-center text-center max-w-4xl mx-auto"
-          )}>
-            <div className={cn("flex gap-4 mb-6", !hasImage && "justify-center")}>
-               <span className="px-4 py-1.5 text-xs font-semibold rounded-full border border-border bg-background/50 text-foreground/80 backdrop-blur-md uppercase tracking-wider">
-                 {project.type}
-               </span>
-               <span className="text-muted-foreground font-mono text-sm tracking-widest pl-2 border-l border-border flex items-center">
-                 0{index + 1}
-               </span>
-            </div>
-            
-            <h3 className={cn("text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6", !hasImage && "md:text-6xl")}>
-              {project.title}
-            </h3>
-            
-            <p className={cn("text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed font-light", !hasImage && "text-xl md:text-2xl max-w-3xl mx-auto")}>
-              {project.description}
-            </p>
-            
-            <div className={cn("flex flex-wrap gap-3 mb-12", !hasImage && "justify-center")}>
-              {project.technologies.map((tech: string) => (
-                <span key={tech} className="text-xs font-mono tracking-widest text-muted-foreground uppercase border border-border/50 bg-background/30 px-4 py-1.5 rounded-full">
-                  {tech}
-                </span>
-              ))}
-            </div>
-            
-            <div className={cn("flex gap-8", !hasImage && "justify-center")}>
-              {project.link && (
-                <Link href={project.link} target="_blank" className="group/link inline-flex items-center text-foreground font-medium tracking-wide hover:text-primary transition-colors text-sm uppercase">
-                  <span className="relative overflow-hidden">
-                    <span className="inline-block transition-transform duration-300 group-hover/link:-translate-y-full">Live Preview</span>
-                    <span className="absolute left-0 top-0 inline-block translate-y-full transition-transform duration-300 group-hover/link:translate-y-0 text-primary">Live Preview</span>
+        {/* Isolated Corner Halftone Texture (Capped at 0.08 opacity) */}
+        <div
+          className="absolute -top-12 -right-12 w-48 h-48 screentone text-muted-foreground opacity-[var(--halftone-opacity)] pointer-events-none select-none"
+          aria-hidden="true"
+        />
+
+        {/* Corner Registration Accents in Arc Spot Color */}
+        <div
+          className="absolute -top-1.5 -left-1.5 w-4 h-4 border-t-2 border-l-2 z-30 transition-all duration-300 group-hover:w-6 group-hover:h-6"
+          style={{ borderColor: accentColor }}
+        />
+        <div
+          className="absolute -top-1.5 -right-1.5 w-4 h-4 border-t-2 border-r-2 z-30 transition-all duration-300 group-hover:w-6 group-hover:h-6"
+          style={{ borderColor: accentColor }}
+        />
+        <div
+          className="absolute -bottom-1.5 -left-1.5 w-4 h-4 border-b-2 border-l-2 z-30 transition-all duration-300 group-hover:w-6 group-hover:h-6"
+          style={{ borderColor: accentColor }}
+        />
+        <div
+          className="absolute -bottom-1.5 -right-1.5 w-4 h-4 border-b-2 border-r-2 z-30 transition-all duration-300 group-hover:w-6 group-hover:h-6"
+          style={{ borderColor: accentColor }}
+        />
+
+        {/* Technical Manga Header Strip */}
+        <div className="flex items-center justify-between px-6 py-3 border-b-2 border-border bg-background font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          <div className="flex items-center gap-3">
+            <span
+              className="w-2.5 h-2.5 inline-block"
+              style={{ backgroundColor: accentColor }}
+            />
+            <span className="text-foreground font-bold">
+              ARC.0{index + 1} // {project.type}
+            </span>
+          </div>
+          <span className="text-muted-foreground font-mono text-[11px]">
+            CHAPTER 0{index + 1} OF 0{total}
+          </span>
+        </div>
+
+        {/* Panel Content Grid */}
+        <div className="w-full flex flex-col lg:flex-row min-h-[460px]">
+          {/* Text & Specs Column */}
+          <div className="flex-1 flex flex-col justify-between p-6 md:p-10 relative z-20">
+            <div>
+              <h3 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground uppercase mb-4 leading-none">
+                {project.title}
+              </h3>
+
+              <p className="text-base sm:text-lg text-muted-foreground font-normal leading-relaxed mb-8 max-w-xl">
+                {project.description}
+              </p>
+
+              {/* Tactical Tech Chips */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                {project.technologies.map((tech: string) => (
+                  <span
+                    key={tech}
+                    className="text-[11px] font-mono tracking-wider text-foreground uppercase border border-border bg-background px-3 py-1"
+                  >
+                    {tech}
                   </span>
-                  <ExternalLink className="w-4 h-4 ml-2 -translate-x-2 opacity-0 group-hover/link:translate-x-0 group-hover/link:opacity-100 transition-all duration-300" />
+                ))}
+              </div>
+            </div>
+
+            {/* Tactile Action Buttons */}
+            <div className="flex flex-wrap gap-4 pt-4 border-t border-border">
+              {project.link && (
+                <Link
+                  href={project.link}
+                  target="_blank"
+                  className="btn-tactile inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 text-xs font-bold uppercase tracking-wider cursor-pointer hover:border-foreground"
+                >
+                  <span>Live Preview</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
                 </Link>
               )}
               {project.github && (
-                <Link href={project.github} target="_blank" className="group/link inline-flex items-center text-muted-foreground font-medium tracking-wide hover:text-foreground transition-colors text-sm uppercase">
-                  <span className="relative overflow-hidden">
-                    <span className="inline-block transition-transform duration-300 group-hover/link:-translate-y-full">Source Code</span>
-                    <span className="absolute left-0 top-0 inline-block translate-y-full transition-transform duration-300 group-hover/link:translate-y-0 text-foreground">Source Code</span>
-                  </span>
-                  <Github className="w-4 h-4 ml-2 -translate-x-2 opacity-0 group-hover/link:translate-x-0 group-hover/link:opacity-100 transition-all duration-300" />
+                <Link
+                  href={project.github}
+                  target="_blank"
+                  className="btn-tactile inline-flex items-center gap-2 bg-card border-2 border-border text-foreground px-6 py-3 text-xs font-semibold uppercase tracking-wider hover:bg-card/80 hover:border-foreground/40 cursor-pointer"
+                >
+                  <Github className="w-3.5 h-3.5" />
+                  <span>Source Code</span>
                 </Link>
+              )}
+              {!project.link && !project.github && (
+                <span className="inline-flex items-center px-4 py-2 border border-border text-[11px] font-mono text-muted-foreground uppercase tracking-wider">
+                  Internal Production Deployment
+                </span>
               )}
             </div>
           </div>
-          
-          {hasImage && (
-            <div className="w-full md:w-1/2 relative min-h-[300px] md:min-h-full overflow-hidden p-3 md:p-6 pb-0 group">
-               <div className="w-full h-full min-h-[400px] relative rounded-t-2xl md:rounded-t-3xl md:rounded-b-none border border-border border-b-0 overflow-hidden bg-background">
-                  <div className="absolute inset-0 bg-background/20 mix-blend-overlay z-10 transition-opacity duration-300 group-hover:opacity-0" />
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover object-top filter grayscale group-hover:grayscale-[10%] transition-all duration-700 group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
-               </div>
+
+          {/* Visual Blueprint / Graphic Panel */}
+          <div className="lg:w-[48%] relative min-h-[300px] lg:min-h-full border-t-2 lg:border-t-0 lg:border-l-2 border-border bg-background overflow-hidden flex items-center justify-center p-4">
+            <div className="relative w-full h-full min-h-[320px] lg:min-h-[420px] border border-border overflow-hidden bg-background">
+              <Image
+                src={project.image}
+                alt={`${project.title} architectural blueprint`}
+                fill
+                className="object-contain lg:object-cover filter grayscale contrast-125 transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-background/10 pointer-events-none" />
             </div>
-          )}
+          </div>
         </div>
       </motion.div>
     </div>
@@ -112,24 +166,37 @@ const ProjectCard = ({ project, index, total }: { project: any, index: number, t
 
 export default function Projects() {
   return (
-    <section className="py-32 relative border-t border-border bg-background" id="projects">
+    <section
+      className="py-32 relative border-t-2 border-border bg-background transition-colors duration-300"
+      id="projects"
+    >
       <div className="container mx-auto px-6 md:px-12 lg:px-24">
         <ScrollAnimation>
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-8 h-[1px] bg-muted-foreground"></div>
-            <DecryptedText 
-              text="03 / PORTFOLIO"
+          <div className="flex items-center gap-4 mb-4">
+            <span className="px-2.5 py-1 text-[11px] font-mono tracking-widest uppercase border border-border bg-card text-foreground">
+              ARC.03 // PORTFOLIO
+            </span>
+            <div className="w-12 h-[2px] bg-[var(--accent-hero)]" />
+            <DecryptedText
+              text="Selected Works"
               speed={40}
-              className="text-muted-foreground font-mono text-sm tracking-widest uppercase"
+              className="text-muted-foreground font-mono text-xs tracking-[0.2em] uppercase"
             />
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter mb-16 md:mb-24 text-foreground">Selected Works.</h2>
+
+          <h2 className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight mb-6 text-foreground uppercase leading-none">
+            Selected Works.
+          </h2>
+
+          <p className="text-muted-foreground text-lg md:text-xl font-normal max-w-2xl mb-16 leading-relaxed">
+            Four discrete production chapters showcasing on-device machine learning inference, real-time SaaS architecture, and resilient web infrastructure.
+          </p>
         </ScrollAnimation>
 
-        <div className="relative w-full max-w-6xl mx-auto pb-[10vh]">
+        <div className="relative w-full max-w-6xl mx-auto pb-[12vh]">
           {projects.map((project, index) => (
-            <ProjectCard 
-              key={index}
+            <ProjectCard
+              key={project.title}
               project={project}
               index={index}
               total={projects.length}

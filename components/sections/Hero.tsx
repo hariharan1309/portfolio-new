@@ -36,216 +36,201 @@ export default function Hero({
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden py-24 px-6 md:px-12 lg:px-24
-    "
+      className="relative min-h-screen flex items-center justify-center overflow-hidden py-24 px-6 md:px-12 lg:px-24 bg-background transition-colors duration-300"
       id="hero"
     >
-      <motion.div
-        className="absolute inset-0 z-0 opacity-20"
-        style={{ y: y1, opacity }}
-      >
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/20 rounded-full mix-blend-screen filter blur-[120px] opacity-[0.15] animate-pulse"></div>
-        <div
-          className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary/20 rounded-full mix-blend-screen filter blur-[120px] opacity-[0.15]"
-          style={{ animationDelay: "2s" }}
-        ></div>
-      </motion.div>
+      {/* Background Halftone screentone texture box behind headline */}
+      <div 
+        className="absolute top-1/4 left-1/12 w-[340px] md:w-[480px] h-[340px] md:h-[480px] pointer-events-none screentone text-muted-foreground opacity-20 -rotate-6 select-none" 
+        aria-hidden="true"
+      />
 
       <div className="container mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="flex-1 space-y-8"
         >
-          <div className="space-y-2">
+          <div className="space-y-4">
+            {/* Manga Eyebrow Tag */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex items-center gap-4 mb-6"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="flex items-center gap-3"
             >
-              <div className="w-12 h-[1px] bg-muted-foreground"></div>
+              <span className="px-2.5 py-1 text-[11px] font-mono tracking-widest uppercase border border-border bg-card text-foreground">
+                VOL.01 // COVER
+              </span>
+              <div className="w-8 h-[2px] bg-[var(--accent-hero)]" />
               <DecryptedText
                 text="Frontend Engineer"
-                delay={1.2}
-                speed={50}
-                className="text-muted-foreground font-mono text-sm tracking-widest uppercase"
+                delay={0.8}
+                speed={40}
+                className="text-muted-foreground font-mono text-xs tracking-[0.2em] uppercase"
               />
             </motion.div>
-            <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[9rem] font-bold tracking-tighter leading-[0.9] text-foreground flex flex-col">
-              <BlurText text="Hariharan" delay={0.3} />
-              <BlurText
-                text="A."
-                delay={0.6}
-                className="text-muted-foreground"
-              />
+
+            {/* Display Headline */}
+            <h1 className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-bold tracking-tight leading-[0.88] text-foreground flex flex-col uppercase">
+              <span className="inline-block transition-transform duration-300 hover:translate-x-1">Hariharan</span>
+              <span className="text-muted-foreground inline-block transition-transform duration-300 hover:translate-x-1">A.</span>
             </h1>
           </div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-lg md:text-xl text-muted-foreground font-light tracking-wide max-w-xl leading-relaxed"
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-lg md:text-xl text-muted-foreground font-normal tracking-normal max-w-xl leading-relaxed"
           >
             Crafting fast, pixel-perfect web and native applications with
-            Next.js, React Native.
+            Next.js and React Native. High concurrency, local AI inference, and brutalist performance.
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row gap-6 pt-8"
+            className="flex flex-col sm:flex-row gap-5 pt-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <Magnetic intensity={0.2}>
-              <Button
+            <Magnetic intensity={0.15}>
+              <button
                 onClick={handleDownload}
-                className="group relative overflow-hidden bg-primary text-primary-foreground rounded-full px-8 py-7 text-sm font-medium tracking-wide transition-all duration-500 hover:scale-105 hover:shadow-[0_0_40px_8px_color-mix(in_srgb,var(--color-primary)_30%,transparent)]"
+                className="btn-tactile group relative inline-flex items-center justify-center bg-primary text-primary-foreground px-8 py-4 text-sm font-bold tracking-wider uppercase hover:border-[var(--accent-hero)] cursor-pointer"
               >
-                <motion.div
-                  className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent z-0"
-                  animate={{ translateX: ["-100%", "200%"] }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 2.5,
-                    ease: "linear",
-                    repeatDelay: 1,
-                  }}
-                />
-                <span className="relative z-10 flex items-center">
-                  <Download className="w-4 h-4 mr-2 group-hover:-translate-y-1 group-hover:opacity-0 transition-all duration-300" />
-                  <Download className="w-4 h-4 mr-2 absolute left-0 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300" />
-                  Download CV
-                </span>
-              </Button>
+                <Download className="w-4 h-4 mr-2 transition-transform duration-200 group-hover:-translate-y-0.5" />
+                Download CV
+              </button>
             </Magnetic>
-            <Magnetic intensity={0.2}>
+            <Magnetic intensity={0.15}>
               <Link
                 href="#contact"
-                className="group relative overflow-hidden bg-secondary/40 backdrop-blur-md border border-border text-foreground rounded-full px-8 py-7 text-sm font-medium tracking-wide transition-all duration-500 hover:scale-105 hover:bg-secondary/80 hover:border-muted-foreground hover:shadow-[0_0_30px_4px_color-mix(in_srgb,var(--color-primary)_20%,transparent)] flex items-center justify-center cursor-pointer"
+                className="btn-tactile group relative inline-flex items-center justify-center bg-card border-2 border-border text-foreground px-8 py-4 text-sm font-semibold tracking-wider uppercase hover:bg-card/80 hover:border-foreground/40 cursor-pointer"
               >
-                <span className="relative z-10 flex items-center">
-                  Let&apos;s Talk
-                  <div className="w-2 h-2 rounded-full bg-muted-foreground ml-3 group-hover:bg-foreground group-hover:scale-150 transition-all duration-300"></div>
-                </span>
+                Let&apos;s Talk
+                <span className="w-2 h-2 ml-3 bg-muted-foreground group-hover:bg-[var(--accent-hero)] transition-colors" />
               </Link>
             </Magnetic>
           </motion.div>
 
           {/* Mobile Image Display (Hidden on Desktop) */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden pt-12"
+            transition={{ duration: 0.6, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="md:hidden pt-8 w-full flex justify-center"
           >
-            <div className="relative w-full max-w-[320px] aspect-square rounded-3xl overflow-hidden border border-border/50 shadow-2xl bg-background p-2">
-              <div className="relative w-full h-full rounded-2xl overflow-hidden border border-border">
+            <div className="relative w-full max-w-[280px] aspect-[4/5] border-2 border-border bg-card p-2 relative">
+              {/* Corner brackets */}
+              <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-[var(--accent-hero)]" />
+              <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-[var(--accent-hero)]" />
+              <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-[var(--accent-hero)]" />
+              <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-[var(--accent-hero)]" />
+
+              <div className="relative w-full h-full border border-border overflow-hidden">
                 <Image
                   src="/Profile.jpg"
-                  alt="Hariharan's profile"
+                  alt="Hariharan's profile portrait"
                   fill
-                  className="object-cover filter grayscale opacity-90"
+                  className="object-cover filter grayscale opacity-80"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-background/20 mix-blend-overlay"></div>
+              </div>
+              <div className="pt-2 flex justify-between font-mono text-[9px] uppercase tracking-widest text-muted-foreground">
+                <span>PORTRAIT // ARCHIVE</span>
+                <span>VOL.01</span>
               </div>
             </div>
           </motion.div>
         </motion.div>
 
+        {/* Desktop 3D Manga Splash Panel */}
         <div style={{ perspective: "1000px" }} className="hidden md:block">
           <motion.div
-            // 1. Elevated & tilted (like holding a frame before dropping it on a desk)
             initial={{
               opacity: 0,
-              y: -80,
-              x: 15,
-              rotateZ: 3,
-              rotateX: 25,
-              scale: 0.9,
+              y: -50,
+              x: 10,
+              rotateZ: 2,
+              rotateX: 15,
+              scale: 0.95,
             }}
-            // 2. Drop heavily into place, settling on an artistic negative tilt
             animate={{
               opacity: 1,
               y: 0,
               x: 0,
-              rotateZ: -3,
+              rotateZ: -2,
               rotateX: 0,
               scale: 1,
             }}
-            // 3. Interactive hover: perfectly straightens out and lifts slightly towards user
-            // whileHover={{
-            //   rotateZ: 0,
-            //   rotateX: 5,
-            //   y: -10,
-            //   scale: 1.02,
-            //   transition: { type: "spring", stiffness: 400, damping: 25 }
-            // }}
-
-            // 4. Premium physics: Drops relatively fast but has a heavy, satisfying wobble as it hits the "ground"
             transition={{
               type: "spring",
-              stiffness: 160, // Speed of the drop
-              damping: 12, // Friction (lower = more wobble/bounce)
-              mass: 1.2, // Weight of the frame
-              delay: 0.3,
+              stiffness: 160,
+              damping: 14,
+              mass: 1.1,
+              delay: 0.2,
             }}
             style={{
               transformStyle: "preserve-3d",
               transformOrigin: "center center",
             }}
-            className="relative w-[420px] h-[420px] group cursor-pointer"
+            className="relative w-[400px] h-[460px] group cursor-pointer"
           >
-            {/* Outer Frame Background */}
-            <div className="absolute inset-0 bg-secondary/20 backdrop-blur-md border border-border/50 shadow-2xl transition-all duration-500 group-hover:border-border group-hover:bg-secondary/40"></div>
+            {/* Outer Brutalist Frame */}
+            <div className="absolute inset-0 bg-card border-2 border-border shadow-2xl transition-colors duration-300 group-hover:border-foreground/40"></div>
 
-            {/* Decorative Corner Brackets */}
-            <div className="absolute -top-[1px] -left-[1px] w-6 h-6 border-t-2 border-l-2 border-muted-foreground z-10 transition-all duration-500 group-hover:border-primary group-hover:w-8 group-hover:h-8"></div>
-            <div className="absolute -top-[1px] -right-[1px] w-6 h-6 border-t-2 border-r-2 border-muted-foreground z-10 transition-all duration-500 group-hover:border-primary group-hover:w-8 group-hover:h-8"></div>
-            <div className="absolute -bottom-[1px] -left-[1px] w-6 h-6 border-b-2 border-l-2 border-muted-foreground z-10 transition-all duration-500 group-hover:border-primary group-hover:w-8 group-hover:h-8"></div>
-            <div className="absolute -bottom-[1px] -right-[1px] w-6 h-6 border-b-2 border-r-2 border-muted-foreground z-10 transition-all duration-500 group-hover:border-primary group-hover:w-8 group-hover:h-8"></div>
+            {/* Corner Registration Accents in Current Theme Accent */}
+            <div className="absolute -top-1.5 -left-1.5 w-4 h-4 border-t-2 border-l-2 border-[var(--accent-hero)] z-20 transition-all duration-300 group-hover:w-6 group-hover:h-6"></div>
+            <div className="absolute -top-1.5 -right-1.5 w-4 h-4 border-t-2 border-r-2 border-[var(--accent-hero)] z-20 transition-all duration-300 group-hover:w-6 group-hover:h-6"></div>
+            <div className="absolute -bottom-1.5 -left-1.5 w-4 h-4 border-b-2 border-l-2 border-[var(--accent-hero)] z-20 transition-all duration-300 group-hover:w-6 group-hover:h-6"></div>
+            <div className="absolute -bottom-1.5 -right-1.5 w-4 h-4 border-b-2 border-r-2 border-[var(--accent-hero)] z-20 transition-all duration-300 group-hover:w-6 group-hover:h-6"></div>
+
+            {/* Technical Header Strip */}
+            <div className="absolute top-2 left-4 right-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-wider text-muted-foreground z-10">
+              <span>FIG. 00 // DEVELOPER_MESH</span>
+              <span className="text-muted-foreground/60">60FPS // TFLITE</span>
+            </div>
 
             {/* Inner Image Container */}
             <div
-              className="absolute inset-4 overflow-hidden bg-background border border-border text-foreground"
+              className="absolute inset-4 top-8 overflow-hidden bg-background border border-border text-foreground"
               onMouseMove={handleMouseMove}
             >
-              {/* Base grayscale image */}
+              {/* Base grayscale ink image */}
               <Image
                 src="/Profile.jpg"
-                alt="Hariharan's profile"
+                alt="Hariharan's profile portrait"
                 fill
-                className="object-cover filter grayscale opacity-60 transition-opacity duration-500 group-hover:opacity-80"
+                className="object-cover filter grayscale opacity-80 transition-opacity duration-500 group-hover:opacity-95"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-background/40 mix-blend-overlay z-10"></div>
+              <div className="absolute inset-0 bg-foreground/5 z-10 pointer-events-none"></div>
 
-              {/* Color image with mask */}
+              {/* Color spotlight with mask */}
               <motion.div
-                className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
-                  maskImage: useMotionTemplate`radial-gradient(250px circle at ${mouseX}px ${mouseY}px, black 0%, transparent 100%)`,
-                  WebkitMaskImage: useMotionTemplate`radial-gradient(250px circle at ${mouseX}px ${mouseY}px, black 0%, transparent 100%)`,
+                  maskImage: useMotionTemplate`radial-gradient(220px circle at ${mouseX}px ${mouseY}px, black 0%, transparent 100%)`,
+                  WebkitMaskImage: useMotionTemplate`radial-gradient(220px circle at ${mouseX}px ${mouseY}px, black 0%, transparent 100%)`,
                 }}
               >
                 <Image
                   src="/Profile.jpg"
-                  alt="Hariharan's profile"
+                  alt="Hariharan's profile portrait"
                   fill
                   className="object-cover"
                   referrerPolicy="no-referrer"
                 />
               </motion.div>
 
-              {/* Spotlight Border */}
+              {/* Spotlight Reticle Border */}
               <motion.div
-                className="absolute inset-0 z-30 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 border border-primary/50"
+                className="absolute inset-0 z-30 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-[var(--accent-hero)]"
                 style={{
-                  maskImage: useMotionTemplate`radial-gradient(200px circle at ${mouseX}px ${mouseY}px, black 0%, transparent 100%)`,
-                  WebkitMaskImage: useMotionTemplate`radial-gradient(200px circle at ${mouseX}px ${mouseY}px, black 0%, transparent 100%)`,
+                  maskImage: useMotionTemplate`radial-gradient(180px circle at ${mouseX}px ${mouseY}px, black 0%, transparent 100%)`,
+                  WebkitMaskImage: useMotionTemplate`radial-gradient(180px circle at ${mouseX}px ${mouseY}px, black 0%, transparent 100%)`,
                 }}
               />
             </div>
@@ -253,12 +238,15 @@ export default function Hero({
         </div>
       </div>
 
+      {/* Chapter Marker Indicator */}
       <motion.div
-        className="absolute bottom-12 left-12 md:left-24 flex items-center gap-4"
+        className="absolute bottom-8 left-8 md:left-16 flex items-center gap-3"
         style={{ opacity }}
       >
-        <span className="text-xs font-mono tracking-widest text-muted-foreground uppercase rotate-[-90deg] origin-left translate-y-8"></span>
-        <div className="w-[1px] h-24 bg-gradient-to-b from-muted-foreground to-transparent"></div>
+        <span className="text-[10px] font-mono tracking-widest text-muted-foreground uppercase rotate-[-90deg] origin-left">
+          CH.00
+        </span>
+        <div className="w-[1px] h-16 bg-gradient-to-b from-border to-transparent"></div>
       </motion.div>
     </section>
   );

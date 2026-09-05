@@ -104,7 +104,7 @@ export const projects = [
     type: "Work Project (AGF Tecnik)",
     description:
       "A high-performance React Native mobile application featuring real-time face detection and local ML inference using TensorFlow Lite and JSI worklets to generate 512-dimensional vector embeddings.",
-    image: "/placeholder.svg?height=400&width=600", // Update with a relevant screenshot or AI graphic if you have one
+    image: "/project-biometrics.svg",
     technologies: [
       "React Native",
       "Expo",
@@ -120,7 +120,7 @@ export const projects = [
     type: "Work Project",
     description:
       "A comprehensive web application for gym management, featuring user profiles, workout tracking, and membership management.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/project-gymforce.svg",
     technologies: [
       "Next.js",
       "TypeScript",
@@ -136,7 +136,7 @@ export const projects = [
     type: "Personal Project",
     description:
       "StayCation is a vacation rental platform built with Next.js, TypeScript, and Tailwind CSS, offering seamless booking experiences with role-based access for users and property owners.",
-    image: "/stayCation.png",
+    image: "/stayCation.jpg",
     technologies: [
       "Next.js",
       "TypeScript",
@@ -153,7 +153,7 @@ export const projects = [
     type: "Personal Project",
     description:
       "This project is a comprehensive subscription management system with user authentication, subscription handling, and robust error management. The system allows users to sign up, log in, and manage their subscriptions with various features including upcoming renewal notifications and subscription status management.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/project-subscription.svg",
     technologies: ["Express.js", "MongoDB", "Node.js"],
     link: "",
     github: "https://github.com/hariharan1309/subscription-tracker-express",

@@ -63,31 +63,43 @@ export function CustomCursor() {
   if (!mounted || isHidden) return null;
 
   return (
-    <>
+    <motion.div
+      className="fixed top-0 left-0 pointer-events-none z-[100] mix-blend-difference hidden md:flex items-center justify-center -translate-x-1/2 -translate-y-1/2 select-none"
+      style={{
+        x: cursorX,
+        y: cursorY,
+      }}
+    >
+      {/* Outer Manga Registration Reticle Box */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[100] mix-blend-difference hidden md:block w-2 h-2 rounded-full bg-white"
-        style={{ 
-            x: mouseX, 
-            y: mouseY,
-            translateX: "-50%",
-            translateY: "-50%"
-        }}
-      />
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[99] mix-blend-difference hidden md:flex items-center justify-center rounded-full border border-white"
-        style={{ 
-            x: cursorX, 
-            y: cursorY,
-            translateX: "-50%",
-            translateY: "-50%"
-        }}
+        className="absolute border border-white/80 flex items-center justify-center"
         animate={{
-          width: isHovering ? 64 : 32,
-          height: isHovering ? 64 : 32,
-          backgroundColor: isHovering ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0)",
+          width: isHovering ? 44 : 22,
+          height: isHovering ? 44 : 22,
+          rotate: isHovering ? 45 : 0,
+          borderColor: isHovering ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.45)",
         }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        transition={{ type: "spring", stiffness: 350, damping: 22 }}
+      >
+        {/* Reticle Corner Brackets when hovering */}
+        {isHovering && (
+          <>
+            <span className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-white" />
+            <span className="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-white" />
+            <span className="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-white" />
+            <span className="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-white" />
+          </>
+        )}
+      </motion.div>
+
+      {/* Dead-Center Blade Diamond Tick */}
+      <motion.div
+        className="w-2 h-2 bg-white rotate-45 select-none relative z-10"
+        animate={{
+          scale: isHovering ? 1.3 : 1,
+        }}
+        transition={{ duration: 0.15 }}
       />
-    </>
+    </motion.div>
   );
 }

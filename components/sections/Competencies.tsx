@@ -3,20 +3,21 @@ import React from "react";
 import ScrollAnimation from "@/components/ScrollAnimation";
 import { skills } from "@/lib/portfolioData";
 import { TrueFocus } from "@/components/ui/TrueFocus";
-import { GraduationCap, Code2, Cpu, Palette, Database } from "lucide-react";
-import DecryptedText from "@/components/reactbits/DecryptedText";
+import { GraduationCap, Code2, Cpu, Database, ShieldCheck, Terminal } from "lucide-react";
 
 export default function Competencies() {
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case "Frontend":
+      case "Frontend Engineering":
         return <Code2 className="w-4 h-4 text-foreground" />;
-      case "Mobile & AI Integration":
+      case "Mobile & On-Device AI":
         return <Cpu className="w-4 h-4 text-foreground" />;
-      case "UI & Styling":
-        return <Palette className="w-4 h-4 text-foreground" />;
-      default:
+      case "Backend & Database":
         return <Database className="w-4 h-4 text-foreground" />;
+      case "Auth & State Architecture":
+        return <ShieldCheck className="w-4 h-4 text-foreground" />;
+      default:
+        return <Terminal className="w-4 h-4 text-foreground" />;
     }
   };
 
@@ -27,18 +28,6 @@ export default function Competencies() {
     >
       <div className="container mx-auto px-6 md:px-12 lg:px-24">
         <ScrollAnimation>
-          <div className="flex items-center gap-3 mb-4">
-            <span className="px-2.5 py-1 text-[11px] font-mono tracking-widest uppercase border border-border bg-card text-foreground">
-              ARCHIVE // 01
-            </span>
-            <div className="w-8 h-[2px] bg-[var(--accent-chronicle)]" />
-            <DecryptedText
-              text="Capabilities"
-              speed={40}
-              className="text-muted-foreground font-mono text-xs tracking-[0.2em] uppercase"
-            />
-          </div>
-
           <h2 className="font-display text-6xl sm:text-7xl md:text-8xl font-bold tracking-tight mb-6 text-foreground uppercase leading-none">
             Capabilities.
           </h2>
@@ -53,7 +42,7 @@ export default function Competencies() {
           {/* Academic Record Card */}
           <ScrollAnimation
             direction="up"
-            className="md:col-span-2 lg:col-span-2 group border-2 border-border bg-card p-8 md:p-10 relative overflow-hidden transition-colors duration-300 hover:border-foreground/40"
+            className="md:col-span-2 lg:col-span-3 group border-2 border-border bg-card p-8 md:p-10 relative overflow-hidden transition-colors duration-300 hover:border-foreground/40"
           >
             {/* Corner registration marks */}
             <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-[var(--accent-chronicle)]" />
@@ -131,9 +120,9 @@ export default function Competencies() {
             className="md:col-span-2 lg:col-span-3 border-2 border-border bg-card/60 p-8 md:p-12 relative overflow-hidden transition-colors duration-300"
           >
             <div className="relative z-10 flex flex-col items-center justify-center text-center">
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-6">
+              {/* <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-6">
                 PHILOSOPHY // CORE OPERATING PRINCIPLE
-              </span>
+              </span> */}
               <TrueFocus
                 sentence="Always learning, always building."
                 blurAmount={3}

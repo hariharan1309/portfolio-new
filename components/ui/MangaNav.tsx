@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Menu, X, Palette, Moon, Sparkles, Sun } from "lucide-react";
+import { Menu, X, Moon, Sun, Briefcase, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { usePortfolioMode } from "@/components/PortfolioModeProvider";
 
 const CHAPTERS = [
   { id: "hero", num: "CH.00", label: "Cover" },
@@ -17,12 +18,11 @@ const CHAPTERS = [
 const THEMES = [
   { name: "paper", label: "Paper", icon: Sun },
   { name: "dark", label: "Ink", icon: Moon },
-  { name: "purple", label: "Reiatsu", icon: Sparkles },
-  { name: "cyan", label: "Bankai", icon: Palette },
 ];
 
 export function MangaNav() {
   const { theme, setTheme } = useTheme();
+  const { mode, setMode, isJobMode } = usePortfolioMode();
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [mounted, setMounted] = useState(false);
@@ -60,15 +60,13 @@ export function MangaNav() {
         <div className="absolute -bottom-1 -left-1 w-2.5 h-2.5 border-b-2 border-l-2 border-[var(--accent-hero)]" />
         <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 border-b-2 border-r-2 border-[var(--accent-hero)]" />
 
-        {/* Volume Spine Brand */}
+        {/* Brand Anchor */}
         <Link
           href="#hero"
-          className="flex items-center gap-2 text-foreground hover:opacity-90 font-mono text-xs uppercase tracking-widest group"
+          className="flex items-center gap-2.5 text-foreground hover:opacity-85 font-mono text-xs uppercase tracking-widest group transition-opacity"
         >
           <span className="w-2 h-2 bg-[var(--accent-hero)] group-hover:scale-125 transition-transform" />
-          <span className="font-bold">VOL.01</span>
-          <span className="text-muted-foreground/60">//</span>
-          <span className="text-muted-foreground group-hover:text-foreground transition-colors">HARIHARAN A.</span>
+          <span className="font-bold tracking-wider">HARIHARAN A.</span>
         </Link>
 
         {/* Desktop Chapter Spine Navigation */}
@@ -93,8 +91,37 @@ export function MangaNav() {
           })}
         </nav>
 
-        {/* Theme Toggles & Mobile Menu Trigger */}
+        {/* Theme & Perspective Controls */}
         <div className="flex items-center gap-2">
+          {/* Career vs Craft Mode Toggle */}
+          {/* <div className="hidden sm:flex items-center border border-border bg-background/80 p-0.5">
+            <button
+              onClick={() => setMode("job")}
+              className={cn(
+                "px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5",
+                isJobMode
+                  ? "bg-primary text-primary-foreground font-bold shadow-sm"
+                  : "text-muted-foreground hover:text-foreground hover:bg-card/40"
+              )}
+              title="Career Dossier — Recruiter availability & enterprise badges"
+            >
+              <span className={cn("w-1.5 h-1.5 rounded-none", isJobMode ? "bg-emerald-400" : "bg-muted-foreground")} />
+              <span>Career</span>
+            </button>
+            <button
+              onClick={() => setMode("craft")}
+              className={cn(
+                "px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5",
+                !isJobMode
+                  ? "bg-primary text-primary-foreground font-bold shadow-sm"
+                  : "text-muted-foreground hover:text-foreground hover:bg-card/40"
+              )}
+              title="Craft Monograph — Pure artistic digital footprint"
+            >
+              <span>Craft</span>
+            </button>
+          </div> */}
+
           {/* Tactical Theme Selector */}
           <div className="hidden sm:flex items-center border border-border bg-background/80 p-0.5">
             {THEMES.map((t) => (
@@ -110,7 +137,7 @@ export function MangaNav() {
                 aria-label={`Select ${t.label} theme`}
               >
                 <t.icon className="w-3 h-3" />
-                <span>{t.label}</span>
+                {/* <span>{t.label}</span> */}
               </button>
             ))}
           </div>
@@ -156,12 +183,50 @@ export function MangaNav() {
             ))}
           </div>
 
+          {/* Mobile Lens Selector */}
+          {/* <div className="pt-4 border-t border-border">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground block mb-2">
+              PERSPECTIVE LENS
+            </span>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                onClick={() => {
+                  setMode("job");
+                  setIsOpen(false);
+                }}
+                className={cn(
+                  "py-2 px-3 text-xs font-mono uppercase tracking-wider border transition-colors flex items-center justify-center gap-1.5",
+                  isJobMode
+                    ? "border-border bg-primary text-primary-foreground font-bold"
+                    : "border-border/60 bg-background text-muted-foreground hover:text-foreground"
+                )}
+              >
+                <span className={cn("w-1.5 h-1.5 rounded-none", isJobMode ? "bg-emerald-400" : "bg-muted-foreground")} />
+                <span>Career</span>
+              </button>
+              <button
+                onClick={() => {
+                  setMode("craft");
+                  setIsOpen(false);
+                }}
+                className={cn(
+                  "py-2 px-3 text-xs font-mono uppercase tracking-wider border transition-colors flex items-center justify-center gap-1.5",
+                  !isJobMode
+                    ? "border-border bg-primary text-primary-foreground font-bold"
+                    : "border-border/60 bg-background text-muted-foreground hover:text-foreground"
+                )}
+              >
+                <span>Craft</span>
+              </button>
+            </div>
+          </div> */}
+
           {/* Mobile Theme Buttons */}
           <div className="pt-4 border-t border-border">
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground block mb-2">
               THEME COLOR SCHEME
             </span>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 gap-2">
               {THEMES.map((t) => (
                 <button
                   key={t.name}
@@ -177,7 +242,7 @@ export function MangaNav() {
                   )}
                 >
                   <t.icon className="w-3.5 h-3.5" />
-                  <span>{t.label}</span>
+                  {/* <span>{t.label}</span> */}
                 </button>
               ))}
             </div>

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Mail, Github, Linkedin, Copy, Check, ArrowUpRight } from "lucide-react";
+import { Mail, Github, Linkedin, Copy, Check, ArrowUpRight, Phone, MapPin } from "lucide-react";
 import ScrollAnimation from "@/components/ScrollAnimation";
 import Link from "next/link";
 import DecryptedText from "@/components/reactbits/DecryptedText";
@@ -49,24 +49,39 @@ export default function Contact({ y2 }: { y2?: any }) {
 
           {/* High-Trust Contact Container */}
           <div className="max-w-2xl mx-auto border-2 border-border bg-card p-8 md:p-12 shadow-2xl relative transition-colors duration-300">
-            {/* Corner Registration Accents in Clean Ink */}
-            <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-foreground/50" />
-            <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-foreground/50" />
-            <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-foreground/50" />
-            <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-foreground/50" />
+            {/* Corner Registration Accents in Signature Royal Accent */}
+            <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-[var(--accent-hero)]" />
+            <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-[var(--accent-hero)]" />
+            <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-[var(--accent-hero)]" />
+            <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-[var(--accent-hero)]" />
 
             <div className="text-center space-y-8">
               {/* Direct Mail Action Box */}
               <div>
-                <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground block mb-3">
+                {/* <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground block mb-3">
                   PRIMARY COMMUNICATION CHANNEL
-                </span>
+                </span> */}
                 <a
                   href={`mailto:${email}`}
-                  className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground hover:text-primary transition-colors tracking-wide underline underline-offset-8 decoration-border hover:decoration-foreground/60"
+                  className="font-display text-2xl sm:text-3xl md:text-4xl text-foreground hover:text-primary transition-colors tracking-wide underline underline-offset-8 decoration-border hover:decoration-foreground/60 "
                 >
                   {email}
                 </a>
+
+                <div className="pt-4 flex flex-wrap items-center justify-center gap-4 font-mono text-xs text-muted-foreground">
+                  <a
+                    href="tel:+919344628710"
+                    className="hover:text-foreground transition-colors flex items-center gap-1.5"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-[var(--accent-hero)]" />
+                    <span>+91 9344628710</span>
+                  </a>
+                  <span className="text-border">//</span>
+                  <span className="flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-[var(--accent-hero)]" />
+                    <span>Salem, Tamil Nadu, India</span>
+                  </span>
+                </div>
               </div>
 
               {/* Action Buttons */}
@@ -81,17 +96,18 @@ export default function Contact({ y2 }: { y2?: any }) {
 
                 <button
                   onClick={handleCopyEmail}
+                  aria-label="Copy email address"
                   className="btn-tactile inline-flex items-center gap-2 bg-background border-2 border-border text-foreground px-6 py-3.5 text-xs font-semibold uppercase tracking-wider hover:bg-card hover:border-foreground/40 cursor-pointer"
                 >
                   {copied ? (
                     <>
-                      <Check className="w-4 h-4 text-emerald-400" />
-                      <span className="text-emerald-400">Copied to Clipboard</span>
+                      <Check className="w-4 h-4 text-foreground" />
+                      <span className="text-foreground">Copied</span>
                     </>
                   ) : (
                     <>
                       <Copy className="w-4 h-4" />
-                      <span>Copy Address</span>
+                      {/* <span>Copy</span> */}
                     </>
                   )}
                 </button>
@@ -123,9 +139,9 @@ export default function Contact({ y2 }: { y2?: any }) {
           </div>
 
           {/* Volume Colophon / Footer Note */}
-          <div className="mt-20 text-center font-mono text-[11px] uppercase tracking-widest text-muted-foreground/60 space-y-2">
-            <div>VOLUME 01 // COMPILED & CRAFTED BY HARIHARAN A.</div>
-            <div>NEXT.JS 15 • TYPESCRIPT • TAILWIND CSS 4 • MOTION</div>
+          <div className="mt-20 text-center font-mono text-[11px] uppercase tracking-widest text-muted-foreground space-y-2">
+            <div>VOLUME 01 // COMPILED & CRAFTED BY <span className="underline">HARIHARAN A.</span></div>
+            <div className="text-muted-foreground/50">NEXT.JS 15 &bull; TYPESCRIPT &bull; TAILWIND CSS 4 &bull; MOTION</div>
           </div>
         </ScrollAnimation>
       </div>

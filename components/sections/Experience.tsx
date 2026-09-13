@@ -44,10 +44,10 @@ export default function Experience({
                 </p>
 
                 {/* Tactical Status Tag */}
-                <div className="hidden lg:inline-flex items-center gap-2.5 px-3.5 py-2 border-2 border-border bg-card font-mono text-xs text-muted-foreground uppercase tracking-wider">
+                {/* <div className="hidden lg:inline-flex items-center gap-2.5 px-3.5 py-2 border-2 border-border bg-card font-mono text-xs text-muted-foreground uppercase tracking-wider">
                   <span className="w-2 h-2 rounded-none bg-[var(--accent-chronicle)]" />
                   <span>TOTAL ENTRIES: 0{experiences.length} CHAPTERS</span>
-                </div>
+                </div> */}
               </ScrollAnimation>
             </div>
           </div>
@@ -59,7 +59,7 @@ export default function Experience({
 
             {/* Dynamic Tracing Ink Beam */}
             <motion.div
-              className="absolute left-4 md:left-8 top-0 w-[2px] bg-[var(--accent-chronicle)] origin-top shadow-[0_0_8px_rgba(200,160,80,0.3)]"
+              className="absolute left-4 md:left-8 top-0 w-[2px] bg-[var(--accent-chronicle)] origin-top shadow-[0_0_8px_oklch(0.52_0.22_28_/_0.35)]"
               style={{ height: beamHeight }}
             />
 
@@ -95,9 +95,15 @@ export default function Experience({
                         {exp.role}
                       </h3>
 
-                      <p className="text-sm md:text-base font-mono text-muted-foreground mb-6 flex items-center gap-2">
+                      <p className="text-sm md:text-base font-mono text-muted-foreground mb-6 flex flex-wrap items-center gap-2">
                         <span className="w-1.5 h-1.5 bg-[var(--accent-chronicle)]" />
-                        <span>{exp.company}</span>
+                        <span className="text-foreground font-semibold">{exp.company}</span>
+                        {exp.location && (
+                          <>
+                            <span className="text-muted-foreground/60">//</span>
+                            <span>{exp.location}</span>
+                          </>
+                        )}
                       </p>
 
                       {/* Responsibilities List with Ink Dashes */}

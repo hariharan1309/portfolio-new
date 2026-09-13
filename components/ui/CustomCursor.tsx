@@ -20,8 +20,12 @@ export function CustomCursor() {
   }, []);
 
   useEffect(() => {
-    // Disable on touch devices
-    if (typeof window === "undefined" || window.matchMedia("(pointer: coarse)").matches) {
+    // Disable on touch devices and non-fine pointers
+    if (
+      typeof window === "undefined" ||
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.matchMedia("(hover: none)").matches
+    ) {
       return;
     }
 
@@ -64,7 +68,7 @@ export function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 pointer-events-none z-[100] mix-blend-difference hidden md:flex items-center justify-center -translate-x-1/2 -translate-y-1/2 select-none"
+      className="fixed top-0 left-0 pointer-events-none z-[100] mix-blend-difference hidden lg:flex items-center justify-center -translate-x-1/2 -translate-y-1/2 select-none"
       style={{
         x: cursorX,
         y: cursorY,
@@ -74,8 +78,8 @@ export function CustomCursor() {
       <motion.div
         className="absolute border border-white/80 flex items-center justify-center"
         animate={{
-          width: isHovering ? 44 : 22,
-          height: isHovering ? 44 : 22,
+          width: isHovering ? 24 : 16,
+          height: isHovering ? 24 : 16,
           rotate: isHovering ? 45 : 0,
           borderColor: isHovering ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.45)",
         }}
@@ -96,7 +100,7 @@ export function CustomCursor() {
       <motion.div
         className="w-2 h-2 bg-white rotate-45 select-none relative z-10"
         animate={{
-          scale: isHovering ? 1.3 : 1,
+          scale: isHovering ? 1.25 : 0.75,
         }}
         transition={{ duration: 0.15 }}
       />

@@ -3,30 +3,8 @@ import { useEffect, useState } from "react";
 import { useScroll, useMotionValueEvent } from "motion/react";
 
 export function AtmosphereHUD() {
-  const [time, setTime] = useState("");
-  const [scrollPct, setScrollPct] = useState("0p");
+  const [scrollPct, setScrollPct] = useState("0%");
   const { scrollYProgress } = useScroll();
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setTime(
-        now.toLocaleTimeString("en-US", {
-          hour12: false,
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-        }) + " / " + now.toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-        })
-      );
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     const pct = Math.round(latest * 100);
@@ -49,29 +27,29 @@ export function AtmosphereHUD() {
         ></div>
       </div>
 
-      {/* Viewport HUD tracking (Technical manga elements) */}
-      <div className="pointer-events-none fixed inset-0 z-40 opacity-80 hidden md:block select-none" aria-hidden="true">
-        {/* Top Left - Volume No. & Identity (positioned below MangaNav) */}
+      {/* Viewport Reading HUD (Minimalist Editorial Margins) */}
+      <div className="pointer-events-none fixed inset-0 z-40 opacity-70 hidden md:block select-none" aria-hidden="true">
+        {/* Top Left - Technical Volume Header (positioned below MangaNav) */}
         <div className="absolute top-20 left-6 text-muted-foreground font-mono text-[10px] uppercase tracking-widest leading-relaxed">
           ISSUE.01 // <br/>
           <span className="text-foreground font-bold">HARIHARAN_A</span>
         </div>
 
-        {/* Top Right - Live Time & Engine Status */}
+        {/* Top Right - Status / Discipline Readout */}
         <div className="absolute top-20 right-6 text-muted-foreground font-mono text-[10px] uppercase tracking-widest text-right leading-relaxed">
-          <span>SYS.RENDER // ACTIVE</span><br/>
-          <span className="text-muted-foreground/60">{time}</span>
+          <span>FRONTEND & MOBILE</span><br/>
+          <span className="text-muted-foreground/60">PRODUCTION ARCHIVE</span>
         </div>
 
         {/* Bottom Left - Volume Reading & Pressure */}
-        <div className="absolute bottom-8 left-6 text-muted-foreground font-mono text-[10px] uppercase tracking-widest leading-relaxed">
-          <span>VOL.01 // STATUS</span><br/>
-          <span className="text-muted-foreground/80">SCROLL: {scrollPct}</span>
-        </div>
+        {/* <div className="absolute bottom-8 left-6 text-muted-foreground font-mono text-[10px] uppercase tracking-widest leading-relaxed">
+          <span>VOL.01 // MONOGRAPH</span><br/>
+          <span className="text-muted-foreground/80">READING DEPTH: {scrollPct}</span>
+        </div> */}
 
-        {/* Right Edge - Reiatsu Pressure Gauge */}
+        {/* Right Edge - Reading Depth Gauge */}
         <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col items-center gap-2">
-          <span className="text-[9px] font-mono tracking-widest text-muted-foreground uppercase -rotate-90 origin-center mb-2">REIATSU</span>
+          <span className="text-[9px] font-mono tracking-widest text-muted-foreground uppercase -rotate-90 origin-center mb-2">DEPTH</span>
           <div className="w-[3px] h-28 bg-card border border-border relative overflow-hidden">
             <div 
               className="w-full bg-[var(--accent-hero)] absolute bottom-0 transition-all duration-150"
@@ -80,19 +58,6 @@ export function AtmosphereHUD() {
           </div>
           <span className="text-[10px] font-mono text-muted-foreground mt-2">{scrollPct}</span>
         </div>
-        
-        {/* Hard Manga Corner Framing Crosshairs */}
-        <div className="absolute top-0 left-12 w-[1px] h-3 bg-border"></div>
-        <div className="absolute top-12 left-0 w-3 h-[1px] bg-border"></div>
-        
-        <div className="absolute top-0 right-12 w-[1px] h-3 bg-border"></div>
-        <div className="absolute top-12 right-0 w-3 h-[1px] bg-border"></div>
-
-        <div className="absolute bottom-0 left-12 w-[1px] h-3 bg-border"></div>
-        <div className="absolute bottom-12 left-0 w-3 h-[1px] bg-border"></div>
-
-        <div className="absolute bottom-0 right-12 w-[1px] h-3 bg-border"></div>
-        <div className="absolute bottom-12 right-0 w-3 h-[1px] bg-border"></div>
       </div>
     </>
   );

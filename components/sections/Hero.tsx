@@ -1,14 +1,11 @@
 "use client";
-import { motion, useMotionValue, useMotionTemplate } from "motion/react";
-import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
-import Image from "next/image";
+import { motion } from "motion/react";
+import { Download, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import Magnetic from "@/components/ui/Magnetic";
-
-import BlurText from "@/components/reactbits/BlurText";
 import DecryptedText from "@/components/reactbits/DecryptedText";
+import { usePortfolioMode } from "@/components/PortfolioModeProvider";
 
 export default function Hero({
   handleDownload,
@@ -21,244 +18,165 @@ export default function Hero({
   y2: any;
   opacity: any;
 }) {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  function handleMouseMove({
-    currentTarget,
-    clientX,
-    clientY,
-  }: React.MouseEvent) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
+  const { isJobMode } = usePortfolioMode();
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden py-24 px-6 md:px-12 lg:px-24
-    "
+      className="relative min-h-[100dvh] flex flex-col justify-center overflow-hidden pt-32 pb-28 px-6 md:px-12 lg:px-24 bg-background transition-colors duration-300"
       id="hero"
     >
-      <motion.div
-        className="absolute inset-0 z-0 opacity-20"
-        style={{ y: y1, opacity }}
-      >
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/20 rounded-full mix-blend-screen filter blur-[120px] opacity-[0.15] animate-pulse"></div>
-        <div
-          className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary/20 rounded-full mix-blend-screen filter blur-[120px] opacity-[0.15]"
-          style={{ animationDelay: "2s" }}
-        ></div>
-      </motion.div>
+      {/* Background Halftone screentone texture box behind headline */}
+      <div
+        className="absolute top-1/4 right-1/12 w-[340px] md:w-[540px] h-[340px] md:h-[540px] pointer-events-none screentone text-muted-foreground opacity-15 rotate-6 select-none"
+        aria-hidden="true"
+      />
 
-      <div className="container mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+      {/* Ambient Corner Registration Crosshairs */}
+      {/* <div className="absolute top-12 left-6 md:left-12 font-mono text-[10px] text-muted-foreground/40 select-none hidden sm:block">
+        + 11.9708° N, 78.1460° E [SALEM_HQ]
+      </div>
+      <div className="absolute top-12 right-6 md:right-12 font-mono text-[10px] text-muted-foreground/40 select-none hidden sm:block">
+        REV.2026 // ED.A2
+      </div> */}
+
+      <div className="max-w-7xl mx-auto w-full relative z-10 space-y-10">
+        {/* Eyebrow Tag & Mode Switch Visualizer */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex-1 space-y-8"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="flex flex-wrap items-center gap-3"
         >
-          <div className="space-y-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex items-center gap-4 mb-6"
-            >
-              <div className="w-12 h-[1px] bg-muted-foreground"></div>
-              <DecryptedText
-                text="Frontend Engineer"
-                delay={1.2}
-                speed={50}
-                className="text-muted-foreground font-mono text-sm tracking-widest uppercase"
-              />
-            </motion.div>
-            <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[9rem] font-bold tracking-tighter leading-[0.9] text-foreground flex flex-col">
-              <BlurText text="Hariharan" delay={0.3} />
-              <BlurText
-                text="A."
-                delay={0.6}
-                className="text-muted-foreground"
-              />
-            </h1>
-          </div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-lg md:text-xl text-muted-foreground font-light tracking-wide max-w-xl leading-relaxed"
-          >
-            Crafting fast, pixel-perfect web and native applications with
-            Next.js, React Native.
-          </motion.p>
-
-          <motion.div
-            className="flex flex-col sm:flex-row gap-6 pt-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <Magnetic intensity={0.2}>
-              <Button
-                onClick={handleDownload}
-                className="group relative overflow-hidden bg-primary text-primary-foreground rounded-full px-8 py-7 text-sm font-medium tracking-wide transition-all duration-500 hover:scale-105 hover:shadow-[0_0_40px_8px_color-mix(in_srgb,var(--color-primary)_30%,transparent)]"
-              >
-                <motion.div
-                  className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent z-0"
-                  animate={{ translateX: ["-100%", "200%"] }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 2.5,
-                    ease: "linear",
-                    repeatDelay: 1,
-                  }}
-                />
-                <span className="relative z-10 flex items-center">
-                  <Download className="w-4 h-4 mr-2 group-hover:-translate-y-1 group-hover:opacity-0 transition-all duration-300" />
-                  <Download className="w-4 h-4 mr-2 absolute left-0 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300" />
-                  Download CV
-                </span>
-              </Button>
-            </Magnetic>
-            <Magnetic intensity={0.2}>
-              <Link
-                href="#contact"
-                className="group relative overflow-hidden bg-secondary/40 backdrop-blur-md border border-border text-foreground rounded-full px-8 py-7 text-sm font-medium tracking-wide transition-all duration-500 hover:scale-105 hover:bg-secondary/80 hover:border-muted-foreground hover:shadow-[0_0_30px_4px_color-mix(in_srgb,var(--color-primary)_20%,transparent)] flex items-center justify-center cursor-pointer"
-              >
-                <span className="relative z-10 flex items-center">
-                  Let&apos;s Talk
-                  <div className="w-2 h-2 rounded-full bg-muted-foreground ml-3 group-hover:bg-foreground group-hover:scale-150 transition-all duration-300"></div>
-                </span>
-              </Link>
-            </Magnetic>
-          </motion.div>
-
-          {/* Mobile Image Display (Hidden on Desktop) */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden pt-12"
-          >
-            <div className="relative w-full max-w-[320px] aspect-square rounded-3xl overflow-hidden border border-border/50 shadow-2xl bg-background p-2">
-              <div className="relative w-full h-full rounded-2xl overflow-hidden border border-border">
-                <Image
-                  src="/Profile.jpg"
-                  alt="Hariharan's profile"
-                  fill
-                  className="object-cover filter grayscale opacity-90"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-background/20 mix-blend-overlay"></div>
-              </div>
-            </div>
-          </motion.div>
+          <span className="px-2.5 py-1 text-[11px] font-mono tracking-widest uppercase border border-border bg-card text-foreground flex items-center gap-2">
+            {isJobMode ? (
+              <>
+                <span className="w-2 h-2 rounded-none bg-emerald-500 animate-pulse" />
+                <span>AVAILABLE FOR HIRE // 2026</span>
+              </>
+            ) : (
+              <>
+                <span className="w-2 h-2 rounded-none bg-[var(--accent-hero)]" />
+                <span>VOL.01 // COVER ARCHIVE</span>
+              </>
+            )}
+          </span>
+          <div className="w-8 h-[2px] bg-[var(--accent-hero)]" />
+          <DecryptedText
+            text="Frontend & Mobile Engineer"
+            delay={0.6}
+            speed={35}
+            className="text-muted-foreground font-mono text-xs tracking-[0.2em] uppercase font-medium"
+          />
         </motion.div>
 
-        <div style={{ perspective: "1000px" }} className="hidden md:block">
-          <motion.div
-            // 1. Elevated & tilted (like holding a frame before dropping it on a desk)
-            initial={{
-              opacity: 0,
-              y: -80,
-              x: 15,
-              rotateZ: 3,
-              rotateX: 25,
-              scale: 0.9,
-            }}
-            // 2. Drop heavily into place, settling on an artistic negative tilt
-            animate={{
-              opacity: 1,
-              y: 0,
-              x: 0,
-              rotateZ: -3,
-              rotateX: 0,
-              scale: 1,
-            }}
-            // 3. Interactive hover: perfectly straightens out and lifts slightly towards user
-            // whileHover={{
-            //   rotateZ: 0,
-            //   rotateX: 5,
-            //   y: -10,
-            //   scale: 1.02,
-            //   transition: { type: "spring", stiffness: 400, damping: 25 }
-            // }}
+        {/* Monumental Monolithic Headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-2"
+        >
+          <h1 className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[11rem] font-bold tracking-tight leading-[0.84] text-foreground uppercase select-none">
+            <span className="transition-transform duration-300 hover:translate-x-1">
+              Hariharan
+            </span>
+            <span className="text-muted-foreground ml-[1vw] transition-transform duration-300 hover:translate-x-1">
+              <span className="text-[var(--accent-hero)] animate-caret-blink transition-all duration-700">.</span>A
+            </span>
+          </h1>
+        </motion.div>
 
-            // 4. Premium physics: Drops relatively fast but has a heavy, satisfying wobble as it hits the "ground"
-            transition={{
-              type: "spring",
-              stiffness: 160, // Speed of the drop
-              damping: 12, // Friction (lower = more wobble/bounce)
-              mass: 1.2, // Weight of the frame
-              delay: 0.3,
-            }}
-            style={{
-              transformStyle: "preserve-3d",
-              transformOrigin: "center center",
-            }}
-            className="relative w-[420px] h-[420px] group cursor-pointer"
-          >
-            {/* Outer Frame Background */}
-            <div className="absolute inset-0 bg-secondary/20 backdrop-blur-md border border-border/50 shadow-2xl transition-all duration-500 group-hover:border-border group-hover:bg-secondary/40"></div>
+        {/* Narrative Proposition */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-normal tracking-normal max-w-3xl leading-relaxed"
+        >
+          Crafting high-throughput web platforms and native mobile apps with
+          Next.js, Node, and React Native. Specializing in on-device AI inference,
+          multi-tenant SaaS architectures, and high-performance engineering.
+        </motion.p>
 
-            {/* Decorative Corner Brackets */}
-            <div className="absolute -top-[1px] -left-[1px] w-6 h-6 border-t-2 border-l-2 border-muted-foreground z-10 transition-all duration-500 group-hover:border-primary group-hover:w-8 group-hover:h-8"></div>
-            <div className="absolute -top-[1px] -right-[1px] w-6 h-6 border-t-2 border-r-2 border-muted-foreground z-10 transition-all duration-500 group-hover:border-primary group-hover:w-8 group-hover:h-8"></div>
-            <div className="absolute -bottom-[1px] -left-[1px] w-6 h-6 border-b-2 border-l-2 border-muted-foreground z-10 transition-all duration-500 group-hover:border-primary group-hover:w-8 group-hover:h-8"></div>
-            <div className="absolute -bottom-[1px] -right-[1px] w-6 h-6 border-b-2 border-r-2 border-muted-foreground z-10 transition-all duration-500 group-hover:border-primary group-hover:w-8 group-hover:h-8"></div>
-
-            {/* Inner Image Container */}
-            <div
-              className="absolute inset-4 overflow-hidden bg-background border border-border text-foreground"
-              onMouseMove={handleMouseMove}
+        {/* Tactile CTAs */}
+        <motion.div
+          className="flex flex-wrap items-center gap-5 pt-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.45 }}
+        >
+          <Magnetic intensity={0.15}>
+            <button
+              onClick={handleDownload}
+              className="btn-tactile group relative inline-flex items-center justify-center bg-primary text-primary-foreground px-8 py-4 text-sm font-bold tracking-wider uppercase hover:border-[var(--accent-hero)] cursor-pointer"
             >
-              {/* Base grayscale image */}
-              <Image
-                src="/Profile.jpg"
-                alt="Hariharan's profile"
-                fill
-                className="object-cover filter grayscale opacity-60 transition-opacity duration-500 group-hover:opacity-80"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-background/40 mix-blend-overlay z-10"></div>
+              <Download className="w-4 h-4 mr-2 transition-transform duration-200 group-hover:-translate-y-0.5" />
+              Download CV
+            </button>
+          </Magnetic>
+          <Magnetic intensity={0.15}>
+            <Link
+              href="#contact"
+              className="btn-tactile group relative inline-flex items-center justify-center bg-card border-2 border-border text-foreground px-8 py-4 text-sm font-semibold tracking-wider uppercase hover:bg-card/80 hover:border-foreground/40 cursor-pointer"
+            >
+              Let&apos;s Talk
+              <ArrowUpRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[var(--accent-hero)]" />
+            </Link>
+          </Magnetic>
+        </motion.div>
 
-              {/* Color image with mask */}
-              <motion.div
-                className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{
-                  maskImage: useMotionTemplate`radial-gradient(250px circle at ${mouseX}px ${mouseY}px, black 0%, transparent 100%)`,
-                  WebkitMaskImage: useMotionTemplate`radial-gradient(250px circle at ${mouseX}px ${mouseY}px, black 0%, transparent 100%)`,
-                }}
-              >
-                <Image
-                  src="/Profile.jpg"
-                  alt="Hariharan's profile"
-                  fill
-                  className="object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </motion.div>
-
-              {/* Spotlight Border */}
-              <motion.div
-                className="absolute inset-0 z-30 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 border border-primary/50"
-                style={{
-                  maskImage: useMotionTemplate`radial-gradient(200px circle at ${mouseX}px ${mouseY}px, black 0%, transparent 100%)`,
-                  WebkitMaskImage: useMotionTemplate`radial-gradient(200px circle at ${mouseX}px ${mouseY}px, black 0%, transparent 100%)`,
-                }}
-              />
+        {/* Monolithic Editorial Telemetry Strip */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.55 }}
+          className="pt-8 border-t border-border grid grid-cols-2 lg:grid-cols-4 gap-6 font-mono text-xs uppercase"
+        >
+          <div className="space-y-1">
+            <div className="text-[10px] text-muted-foreground tracking-widest">
+              01 // SPECIALTY
             </div>
-          </motion.div>
-        </div>
+            <div className="text-foreground font-semibold text-sm">
+              Frontend & Mobile
+            </div>
+          </div>
+          <div className="space-y-1">
+            <div className="text-[10px] text-muted-foreground tracking-widest">
+              02 // CORE STACK
+            </div>
+            <div className="text-foreground font-semibold text-sm">
+              Next.js · React · React Native
+            </div>
+          </div>
+          <div className="space-y-1">
+            <div className="text-[10px] text-muted-foreground tracking-widest">
+              03 // EDGE SYSTEMS
+            </div>
+            <div className="text-foreground font-semibold text-sm">
+              TFLite · Biometric
+            </div>
+          </div>
+          <div className="space-y-1">
+            <div className="text-[10px] text-muted-foreground tracking-widest">
+              04 // AVAILABILITY
+            </div>
+            <div className="text-foreground font-semibold text-sm flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 bg-[var(--accent-hero)]" />
+              Open to Relocation
+            </div>
+          </div>
+        </motion.div>
       </div>
 
+      {/* Chapter Marker Indicator */}
       <motion.div
-        className="absolute bottom-12 left-12 md:left-24 flex items-center gap-4"
+        className="absolute bottom-8 left-8 md:left-16 flex items-center gap-3 pointer-events-none select-none"
         style={{ opacity }}
       >
-        <span className="text-xs font-mono tracking-widest text-muted-foreground uppercase rotate-[-90deg] origin-left translate-y-8"></span>
-        <div className="w-[1px] h-24 bg-gradient-to-b from-muted-foreground to-transparent"></div>
+        <span className="text-[10px] font-mono tracking-widest text-muted-foreground/40 uppercase rotate-[-90deg] origin-left translate-y-8">
+          CH.00
+        </span>
+        <div className="w-[1px] h-16 bg-gradient-to-b from-border to-transparent"></div>
       </motion.div>
     </section>
   );

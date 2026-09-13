@@ -32,7 +32,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-zinc-50 selection:bg-zinc-800 selection:text-zinc-50 overflow-clip">
+    <main className="min-h-screen bg-background text-foreground transition-colors duration-300 selection:bg-primary selection:text-primary-foreground overflow-clip">
       <Hero handleDownload={handleDownload} y1={y1} y2={y2} opacity={opacity} />
       <Competencies />
       <Experience experienceRef={experienceRef} beamHeight={beamHeight} />

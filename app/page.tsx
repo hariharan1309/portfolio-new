@@ -22,15 +22,24 @@ export default function Home() {
   });
   const beamHeight = useTransform(experienceScroll, [0, 1], ["0%", "100%"]);
 
-  const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = "/Hariharan-A-Resume.pdf";
-    link.download = "Hariharan_A_Resume.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  // const handleDownload = () => {
+  //   const link = document.createElement("a");
+  //   link.href = "/Hariharan-A-Resume.pdf";
+  //   link.download = "Hariharan_A_Resume.pdf";
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
 
+  const handleDownload = () => {
+    const fileId = "1f7jfw5FSAHnigaY9omud8eicW-uQ94wA";
+  
+    const directDownloadUrl =
+      `https://drive.google.com/uc?export=download&id=${fileId}`;
+  
+    window.location.href = directDownloadUrl;
+  };
+  
   return (
     <main className="min-h-screen bg-background text-foreground transition-colors duration-300 selection:bg-primary selection:text-primary-foreground overflow-clip">
       <Hero handleDownload={handleDownload} y1={y1} y2={y2} opacity={opacity} />

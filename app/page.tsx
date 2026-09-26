@@ -45,7 +45,7 @@ export default function Home() {
       <Hero handleDownload={handleDownload} y1={y1} y2={y2} opacity={opacity} />
       <Competencies />
       <Experience experienceRef={experienceRef} beamHeight={beamHeight} />
-      <Projects />
+      {/* <Projects /> */}
       <Contact y2={y2} />
     </main>
   );

@@ -91,7 +91,7 @@ export default function Hero({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-normal tracking-normal max-w-3xl leading-relaxed"
+          className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-normal tracking-normal max-w-3xl lg:max-w-7xl leading-relaxed"
         >
           Crafting high-throughput web platforms and native mobile apps with
           Next.js, Node, and React Native. Specializing in on-device AI inference,

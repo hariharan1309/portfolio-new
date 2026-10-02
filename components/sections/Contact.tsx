@@ -26,7 +26,7 @@ export default function Contact({ y2 }: { y2?: any }) {
             {/* Section Eyebrow */}
             <div className="inline-flex items-center gap-3 mb-6">
               <span className="px-2.5 py-1 text-[11px] font-mono tracking-widest uppercase border border-border bg-card text-foreground">
-                OUTRO // 04
+                OUTRO // 03
               </span>
               <div className="w-8 h-[2px] bg-border" />
               <DecryptedText

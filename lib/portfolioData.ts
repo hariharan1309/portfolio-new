@@ -74,6 +74,7 @@ export const skills = [
     category: "Backend & Database",
     items: [
       "Node.js",
+      "Python",
       "Express.js",
       "RESTful APIs",
       "MongoDB",

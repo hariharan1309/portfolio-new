@@ -11,8 +11,8 @@ const CHAPTERS = [
   { id: "hero", num: "CH.00", label: "Cover" },
   { id: "competencies", num: "CH.01", label: "Capabilities" },
   { id: "experience", num: "CH.02", label: "Journey" },
-  { id: "projects", num: "CH.03", label: "Portfolio" },
-  { id: "contact", num: "CH.04", label: "Let's Talk" },
+  // { id: "projects", num: "CH.03", label: "Portfolio" },
+  { id: "contact", num: "CH.03", label: "Let's Talk" },
 ];
 
 const THEMES = [
@@ -22,7 +22,7 @@ const THEMES = [
 
 export function MangaNav() {
   const { theme, setTheme } = useTheme();
-  const { mode, setMode, isJobMode } = usePortfolioMode();
+  // const { mode, setMode, isJobMode } = usePortfolioMode();
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [mounted, setMounted] = useState(false);
